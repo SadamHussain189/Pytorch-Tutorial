@@ -1,0 +1,8 @@
+OVERVIEW OF PYTORCH
+
+1: Tensors
+2: AutoGrad
+3: Building a Model
+4: Loading data
+5: Training Models
+Deploying with PYTORCH
