@@ -118,7 +118,7 @@ optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
 
 print(len(validation_loader))
-for epoch in range(5):
+for epoch in range(1):
     running_loss = 0.0
 
     for i, data in enumerate(training_loader, 0):
@@ -158,37 +158,37 @@ writer.flush()
 
 
 
-# # Again, grab a single mini-batch of images
-# dataiter = iter(training_loader)
-# images, labels = next(dataiter)
+# Again, grab a single mini-batch of images
+dataiter = iter(training_loader)
+images, labels = next(dataiter)
 
-# # add_graph() will trace the sample input through your model,
-# # and render it as a graph.
-# writer.add_graph(net, images)
-# writer.flush()
-
-
+# add_graph() will trace the sample input through your model,
+# and render it as a graph.
+writer.add_graph(net, images)
+writer.flush()
 
 
-# # Select a random subset of data and corresponding labels
-# def select_n_random(data, labels, n=100):
-#     assert len(data) == len(labels)
 
-#     perm = torch.randperm(len(data))
-#     return data[perm][:n], labels[perm][:n]
 
-# # Extract a random subset of data
-# images, labels = select_n_random(training_set.data, training_set.targets)
+# Select a random subset of data and corresponding labels
+def select_n_random(data, labels, n=100):
+    assert len(data) == len(labels)
 
-# # get the class labels for each image
-# class_labels = [classes[label] for label in labels]
+    perm = torch.randperm(len(data))
+    return data[perm][:n], labels[perm][:n]
 
-# # log embeddings
-# features = images.view(-1, 28 * 28)
-# writer.add_embedding(features,
-#                     metadata=class_labels,
-#                     label_img=images.unsqueeze(1))
-# writer.flush()
-# writer.close()
+# Extract a random subset of data
+images, labels = select_n_random(training_set.data, training_set.targets)
+
+# get the class labels for each image
+class_labels = [classes[label] for label in labels]
+
+# log embeddings
+features = images.view(-1, 28 * 28)
+writer.add_embedding(features,
+                    metadata=class_labels,
+                    label_img=images.unsqueeze(1))
+writer.flush()
+writer.close()
 
 
