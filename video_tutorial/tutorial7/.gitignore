@@ -1,0 +1,9 @@
+data/*
+runs/*
+model_*
+model.*
+*.jpg
+*.json
+*.DS_Store
+*._img
+*._video7
