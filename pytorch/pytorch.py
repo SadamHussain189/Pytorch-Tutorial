@@ -107,12 +107,12 @@ def test(dataloader, model, loss_fn):
         print("Done!")
 
 # Saving model
-torch.save(model.state_dict(), "/home/aletheia-ai/Aletheia-AI_Development/pytorch/model.pth")
+torch.save(model.state_dict(), "./model.pth")
 print("Save PyTorch Model State to model.pth")
 
 # Load Models
 model = NeuralNetwork().to(device)
-model.load_state_dict(torch.load("/home/aletheia-ai/Aletheia-AI_Development/pytorch/model.pth"))
+model.load_state_dict(torch.load("./model.pth"))
 
 classes = [
     "T-shirt/top",
